@@ -1,51 +1,22 @@
 #include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <math.h>
-#include <stdlib.h>
 
-
-
-void first_line(int c)
-{
-	int i = 0;
-	while (i <= c)
-	{
-		printf("%i", c);
-		i++;
-	}
-	printf("\n");
-}
-
-void second_line(int c)
-{
-        int i = 0;
-        while (i <= c)
-        {
-		if (i == 0)
-		{
-                	printf("%i", c);
-		}
-		if (i == c)
-		{
-			printf("%i", c);
-		}
-		else
-		{
-			c -= 1;
-			printf("%i", c);
-		}
-		i++;
-        }
-        printf("\n");
-}
-
-int main() 
+int main()
 {
 
     int n;
     scanf("%d", &n);
-    first_line(n);
-    second_line(n);
+    int size = 2 * n - 1;  // The size of the pattern is 2n-1
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            // Calculate the number to print at position (i, j)
+            int min = i < j ? i : j;         // minimum of i and j
+            min = min < size - i ? min : size - i - 1;  // minimum of min and size-i-1
+            min = min < size - j ? min : size - j - 1;  // minimum of min and size-j-1
+            printf("%d ", n - min);
+        }
+        printf("\n");
+    }
+
     return 0;
 }
